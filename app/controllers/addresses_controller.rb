@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /addresses
   def index
     @addresses = Address.all
@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
-    @address = Address.new
+    @address = current_user.addresses.build 
   end
 
   # GET /addresses/1/edit
@@ -21,7 +21,7 @@ class AddressesController < ApplicationController
 
   # POST /addresses
   def create
-    @address = Address.new(address_params)
+    @address = current_user.addresses.build(address_params)
 
     if @address.save
       redirect_to @address, notice: 'Address was successfully created.'
