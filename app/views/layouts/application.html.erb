@@ -52,7 +52,11 @@
 	</nav>
 
 	<div class="container">
-		<%= yield %>
+		<div class="col-md-8"> 
+			<%= yield %>
+		</div>
+
+		<%= render 'shared/sidebar' %>
 	</div>
 
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
